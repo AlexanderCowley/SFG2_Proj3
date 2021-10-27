@@ -1,7 +1,7 @@
 using UnityEngine.UI;
 using UnityEngine;
 
-public class UI_Battle : MonoBehaviour
+public class UI_TurnText : MonoBehaviour
 {
     [SerializeField] Text _battleText;
 
