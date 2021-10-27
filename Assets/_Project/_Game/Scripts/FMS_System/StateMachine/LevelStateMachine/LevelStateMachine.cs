@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class LevelStateMachine : AbstractStateMachine
 {
-    void Awake()
+    void Start()
     {
-        
+        ChangeState <LoadLevelState>();
     }
 }
