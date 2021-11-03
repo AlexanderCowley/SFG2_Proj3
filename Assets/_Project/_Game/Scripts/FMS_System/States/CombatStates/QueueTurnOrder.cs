@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using System;
 
 public class QueueTurnOrder : CombatState
 {
@@ -8,12 +10,22 @@ public class QueueTurnOrder : CombatState
 
     CharacterController _target;
 
+    List<CharacterController> _characters = 
+        new List<CharacterController>(); 
+
     public override void Enter()
     {
-        _stateText.text = "Queue Turn Order";
+        _stateText.text = "Queue Turn Order State";
         _stateText.gameObject.SetActive(true);
 
         _activated = false;
+
+        _combatStateMachine.Input.PressedConfirmed += InputAction;
+    }
+
+    void InputAction()
+    {
+        _stateMachine.ChangeState<TurnState>();
     }
 
     //Find Next Character Turn
@@ -29,11 +41,12 @@ public class QueueTurnOrder : CombatState
 
     public override void Tick()
     {
+
         if (_activated)
             return;
+
         _activated = true;
-        print("Change State to Turn");
         _combatStateMachine._characterTarget = _target;
-        _stateMachine.ChangeState<TurnState>();
+        //_stateMachine.ChangeState<TurnState>();
     }
 }
