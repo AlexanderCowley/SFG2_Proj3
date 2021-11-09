@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
-using System;
 
 public class QueueTurnOrder : CombatState
 {
@@ -36,17 +35,17 @@ public class QueueTurnOrder : CombatState
     {
         _stateText.gameObject.SetActive(false);
 
+        _combatStateMachine.Input.PressedConfirmed -= InputAction;
+
         _activated = false;
     }
 
     public override void Tick()
     {
-
         if (_activated)
             return;
 
         _activated = true;
         _combatStateMachine._characterTarget = _target;
-        //_stateMachine.ChangeState<TurnState>();
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CombatStateMachine : AbstractStateMachine
@@ -6,5 +7,8 @@ public class CombatStateMachine : AbstractStateMachine
     public InputController Input => _input;
 
     public CharacterController _characterTarget;
-    void Start() => ChangeState<TurnState>();
+
+    public List<CharacterController> _combatants;
+
+    void OnEnable() => ChangeState<InitCombat>();
 }

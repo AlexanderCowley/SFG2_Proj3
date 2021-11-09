@@ -2,11 +2,6 @@ using UnityEngine;
 
 public class PlayerController : CharacterController
 {
-    void Awake()
-    {
-        
-    }
-
     //Enable Action Canvas
     public override void EnableInput()
     {
