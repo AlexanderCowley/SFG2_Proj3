@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class InitCombat : CombatState
 {
-    //Get List into Queue Characters (States or State Machine)
-    //Spawn x amount of enemies
     [SerializeField] Text _stateText;
 
     [SerializeField] List<CharacterController> _characters = 
@@ -47,11 +45,6 @@ public class InitCombat : CombatState
     public override void Exit()
     {
         _stateText.gameObject.SetActive(false);
-    }
-
-    public override void Tick()
-    {
-        
     }
 
 }
