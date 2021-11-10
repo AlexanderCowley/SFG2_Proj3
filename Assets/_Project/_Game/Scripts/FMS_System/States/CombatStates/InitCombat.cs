@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class InitCombat : CombatState
 {
@@ -14,14 +15,14 @@ public class InitCombat : CombatState
     {
         if (_combatStateMachine == null)
             _combatStateMachine = GetComponent<CombatStateMachine>();
-        //StartCoroutine(stateDelay(.1f));
+
         _stateText.text = "Init Combat State";
 
         _stateText.gameObject.SetActive(true);
         SpawnCombatants();
     }
 
-    void QueueCharacters()
+    void QueueTurns()
     {
         _combatStateMachine.ChangeState<QueueTurnOrder>();
     }
@@ -30,16 +31,25 @@ public class InitCombat : CombatState
     {
         for (int i = 0; i < _characters.Count; i++)
         {
-            GameObject temp = Instantiate(_characters[i].gameObject, transform.position, Quaternion.identity);
+            Instantiate(_characters[i].gameObject, transform.position, Quaternion.identity);
             _combatStateMachine._combatants.Add(_characters[i]);
         }
-        StartCoroutine(stateDelay(.15f));
+
+        QueueCharacters();
+    }
+
+    void QueueCharacters()
+    {
+        _combatStateMachine._combatants.OrderByDescending(characters => characters.Stats.Speed);
+        _combatStateMachine._combatants.Reverse();
+
+        StartCoroutine(stateDelay(.2f));
     }
 
     IEnumerator stateDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        QueueCharacters();
+        QueueTurns();
     }
 
     public override void Exit()

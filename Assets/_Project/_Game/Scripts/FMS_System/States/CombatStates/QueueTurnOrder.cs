@@ -7,10 +7,8 @@ public class QueueTurnOrder : CombatState
     [SerializeField] Text _stateText;
     bool _activated = false;
 
-    CharacterController _target;
-
     List<CharacterController> _characters = 
-        new List<CharacterController>(); 
+        new List<CharacterController>();
 
     public override void Enter()
     {
@@ -20,16 +18,49 @@ public class QueueTurnOrder : CombatState
         _activated = false;
 
         _combatStateMachine.Input.PressedConfirmed += InputAction;
+
+
+        CheckVictoryCondition();
+        GetNextCharacter();
+    }
+
+    void GetNextCharacter()
+    {
+        if (_combatStateMachine._combatants.Count < 0)
+            print("no combantants present");
+            //_combatStateMachine.ChangeState<>();
+        _combatStateMachine._characterTarget = _combatStateMachine._combatants[0];
+        //Find Next Character Turn
+    }
+
+    void CheckVictoryCondition()
+    {
+        int allyCount = 0;
+        int enemyCount = 0;
+        for(int i = 0; i < _combatStateMachine._combatants.Count; i++)
+        {
+            if (_combatStateMachine._combatants[i].GetType() == typeof(PlayerController))
+            {
+                allyCount++;
+            }
+            else if(_combatStateMachine._combatants[i].GetType() == typeof(EnemyController))
+            {
+                enemyCount++;
+            }
+
+        }
+
+
+        print(allyCount);
+        print(enemyCount);
+        //If no enemies are present Achieve Win State
+        //If no players are present Achieve Lose State
     }
 
     void InputAction()
     {
         _stateMachine.ChangeState<TurnState>();
     }
-
-    //Find Next Character Turn
-    //If no enemies are present Achieve Win State
-    //If no players are present Achieve Lose State
 
     public override void Exit()
     {
@@ -38,14 +69,5 @@ public class QueueTurnOrder : CombatState
         _combatStateMachine.Input.PressedConfirmed -= InputAction;
 
         _activated = false;
-    }
-
-    public override void Tick()
-    {
-        if (_activated)
-            return;
-
-        _activated = true;
-        _combatStateMachine._characterTarget = _target;
     }
 }

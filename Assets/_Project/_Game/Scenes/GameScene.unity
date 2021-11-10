@@ -774,6 +774,8 @@ MonoBehaviour:
   _stateText: {fileID: 359530244}
   _characters:
   - {fileID: 2599080003072290387, guid: 0dddcdda2aaf5f94ca41f1f4e0d9dc30, type: 3}
+  - {fileID: 6092477445642673076, guid: 1a32c0066366e854193d228182b6e1e5, type: 3}
+  - {fileID: 6092477445642673076, guid: 1a32c0066366e854193d228182b6e1e5, type: 3}
 --- !u!1 &1666426822
 GameObject:
   m_ObjectHideFlags: 0

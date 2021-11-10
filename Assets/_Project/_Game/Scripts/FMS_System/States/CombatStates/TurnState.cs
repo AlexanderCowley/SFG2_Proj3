@@ -10,7 +10,7 @@ public class TurnState : CombatState
 
     public override void Enter()
     {
-        //GetTarget();
+        GetTarget();
         _stateText.gameObject.SetActive(true);
         _turnCount++;
 
