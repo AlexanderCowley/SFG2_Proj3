@@ -20,17 +20,21 @@ public class QueueTurnOrder : CombatState
         _combatStateMachine.Input.PressedConfirmed += InputAction;
 
         CheckVictoryCondition();
-        ShuffleQueue();
+        GetNextCharacter();
     }
 
     void ShuffleQueue()
     {
+        _combatStateMachine._combatants.RemoveAt(0);
+        _combatStateMachine._combatants.Add(_combatStateMachine._characterTarget);
+
+        for (int i = 0; i < _combatStateMachine._combatants.Count; i++)
+            print(_combatStateMachine._combatants[i]);
+
         if(_combatStateMachine._characterTarget == _combatStateMachine._combatants[0])
         {
 
         }
-
-        GetNextCharacter();
     }
 
     void GetNextCharacter()
@@ -42,6 +46,7 @@ public class QueueTurnOrder : CombatState
         }
 
         _combatStateMachine._characterTarget = _combatStateMachine._combatants[0];
+        ShuffleQueue();
     }
 
     void CheckVictoryCondition()
