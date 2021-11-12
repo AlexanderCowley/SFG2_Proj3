@@ -19,18 +19,29 @@ public class QueueTurnOrder : CombatState
 
         _combatStateMachine.Input.PressedConfirmed += InputAction;
 
-
         CheckVictoryCondition();
+        ShuffleQueue();
+    }
+
+    void ShuffleQueue()
+    {
+        if(_combatStateMachine._characterTarget == _combatStateMachine._combatants[0])
+        {
+
+        }
+
         GetNextCharacter();
     }
 
     void GetNextCharacter()
     {
         if (_combatStateMachine._combatants.Count < 0)
+        {
             print("no combantants present");
-            //_combatStateMachine.ChangeState<>();
+            WonBattle();
+        }
+
         _combatStateMachine._characterTarget = _combatStateMachine._combatants[0];
-        //Find Next Character Turn
     }
 
     void CheckVictoryCondition()
@@ -50,11 +61,20 @@ public class QueueTurnOrder : CombatState
 
         }
 
+        if (allyCount <= 0)
+            GameOver();
+        if (enemyCount <= 0)
+            WonBattle();
+    }
 
-        print(allyCount);
-        print(enemyCount);
-        //If no enemies are present Achieve Win State
-        //If no players are present Achieve Lose State
+    void GameOver()
+    {
+        print("gameover");
+    }
+
+    void WonBattle()
+    {
+        print("won battle");
     }
 
     void InputAction()
