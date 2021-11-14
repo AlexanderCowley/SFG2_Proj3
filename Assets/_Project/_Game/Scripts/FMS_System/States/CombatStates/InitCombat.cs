@@ -8,8 +8,8 @@ public class InitCombat : CombatState
 {
     [SerializeField] Text _stateText;
 
-    [SerializeField] List<CharacterController> _characters = 
-        new List<CharacterController>();
+    [SerializeField] List<CombatCharacterController> _characters = 
+        new List<CombatCharacterController>();
 
     public override void Enter()
     {
@@ -31,8 +31,8 @@ public class InitCombat : CombatState
     {
         for (int i = 0; i < _characters.Count; i++)
         {
-            Instantiate(_characters[i].gameObject, transform.position, Quaternion.identity);
-            _combatStateMachine._combatants.Add(_characters[i]);
+            GameObject combantant = Instantiate(_characters[i].gameObject, transform.position, Quaternion.identity);
+            _combatStateMachine._combatants.Add(combantant);
         }
 
         QueueCharacters();
@@ -40,7 +40,9 @@ public class InitCombat : CombatState
 
     void QueueCharacters()
     {
-        _combatStateMachine._combatants.OrderByDescending(characters => characters.Stats.Speed);
+        _combatStateMachine._combatants.OrderByDescending(characters => 
+        characters.GetComponent<CombatCharacterController>().Stats.Speed);
+
         _combatStateMachine._combatants.Reverse();
 
         StartCoroutine(stateDelay(.2f));

@@ -1,15 +1,23 @@
+using UnityEngine.UI;
 using UnityEngine;
 
-public class PlayerController : CharacterController
+public class PlayerController : CombatCharacterController
 {
-    //Enable Action Canvas
+    [SerializeField] GameObject _canvasObj;
+
+    private void Awake()
+    {
+        _canvasObj.SetActive(false);
+        print(_canvasObj);
+    }
     public override void EnableInput()
     {
-
+        print(_canvasObj);
+        _canvasObj.SetActive(true);
     }
-    //Disable Action Canvas
+
     public override void DisableInput()
     {
-
+        _canvasObj.SetActive(false);
     }
 }

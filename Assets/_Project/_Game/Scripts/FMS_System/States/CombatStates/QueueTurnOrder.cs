@@ -7,8 +7,8 @@ public class QueueTurnOrder : CombatState
     [SerializeField] Text _stateText;
     bool _activated = false;
 
-    List<CharacterController> _characters = 
-        new List<CharacterController>();
+    List<CombatCharacterController> _characters = 
+        new List<CombatCharacterController>();
 
     public override void Enter()
     {
@@ -27,14 +27,6 @@ public class QueueTurnOrder : CombatState
     {
         _combatStateMachine._combatants.RemoveAt(0);
         _combatStateMachine._combatants.Add(_combatStateMachine._characterTarget);
-
-        for (int i = 0; i < _combatStateMachine._combatants.Count; i++)
-            print(_combatStateMachine._combatants[i]);
-
-        if(_combatStateMachine._characterTarget == _combatStateMachine._combatants[0])
-        {
-
-        }
     }
 
     void GetNextCharacter()
@@ -55,11 +47,11 @@ public class QueueTurnOrder : CombatState
         int enemyCount = 0;
         for(int i = 0; i < _combatStateMachine._combatants.Count; i++)
         {
-            if (_combatStateMachine._combatants[i].GetType() == typeof(PlayerController))
+            if (_combatStateMachine._combatants[i].GetComponent<PlayerController>() !=  null)
             {
                 allyCount++;
             }
-            else if(_combatStateMachine._combatants[i].GetType() == typeof(EnemyController))
+            else if(_combatStateMachine._combatants[i].GetComponent<EnemyController>() != null)
             {
                 enemyCount++;
             }

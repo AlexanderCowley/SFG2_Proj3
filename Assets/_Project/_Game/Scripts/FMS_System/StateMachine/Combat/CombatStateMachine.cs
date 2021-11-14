@@ -6,9 +6,9 @@ public class CombatStateMachine : AbstractStateMachine
     [SerializeField] InputController _input;
     public InputController Input => _input;
 
-    public CharacterController _characterTarget;
+    public GameObject _characterTarget;
 
-    public List<CharacterController> _combatants;
+    public List<GameObject> _combatants;
 
     void OnEnable() => ChangeState<InitCombat>();
 }
