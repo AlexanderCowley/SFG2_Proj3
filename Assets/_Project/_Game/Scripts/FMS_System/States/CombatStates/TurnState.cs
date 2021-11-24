@@ -11,7 +11,7 @@ public class TurnState : CombatState
 
     CombatSelection _combatSelection;
 
-    ActionAttack _actionAttack;
+    ActionBase[] _actions;
 
     public override void Enter()
     {
@@ -39,9 +39,18 @@ public class TurnState : CombatState
         _combatSelection?.InitCombatList(_combatStateMachine._combatants);
         _combatSelection?.InitInput(_combatStateMachine.Input);
 
-        _actionAttack = _turnTargetController.GetComponentInChildren<ActionAttack>();
-        _actionAttack?.GetTurnState(this);
+        InitActions();
         //Change to Selection State??
+    }
+
+    void InitActions()
+    {
+        _actions = _turnTargetController.GetComponentsInChildren<ActionBase>();
+        for(int i = 0; i < _actions.Length; i++)
+        {
+            _actions[i]?.GetTurnState(this);
+        }
+        
     }
 
     void InitEnemyAttack()

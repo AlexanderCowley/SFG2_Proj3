@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ActionAttack : MonoBehaviour
+public class ActionAttack : ActionBase
 {
     Button _btn;
 
@@ -20,8 +20,6 @@ public class ActionAttack : MonoBehaviour
         _btn = GetComponent<Button>();
         _selection = GetComponentInParent<CombatSelection>();
     }
-
-    public void GetTurnState(TurnState turnState) => _turnState = turnState;
 
     void OnEnable()
     {
