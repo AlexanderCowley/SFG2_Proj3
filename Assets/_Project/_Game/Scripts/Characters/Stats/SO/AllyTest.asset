@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: AllyTest
   m_EditorClassIdentifier: 
   health: 10
+  stunHealth: 3
   damage: 1
+  stunDamage: 10
   speed: 3

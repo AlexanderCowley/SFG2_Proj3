@@ -32,6 +32,7 @@ public class InitCombat : CombatState
         for (int i = 0; i < _characters.Count; i++)
         {
             GameObject combantant = Instantiate(_characters[i].gameObject, transform.position, Quaternion.identity);
+            combantant.GetComponent<CharacterStunStatus>().QueueReference(GetComponent<QueueTurnOrder>());
             _combatStateMachine._combatants.Add(combantant);
         }
 

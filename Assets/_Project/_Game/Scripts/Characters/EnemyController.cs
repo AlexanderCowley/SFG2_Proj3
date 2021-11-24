@@ -2,13 +2,15 @@ using UnityEngine;
 
 public class EnemyController : CombatCharacterController
 {
-    public override void EnableInput()
-    {
-        
-    }
+    public delegate void OnTurnEntered();
+    public OnTurnEntered _turnEnteredEvent;
 
-    public override void DisableInput()
+    [SerializeField] GameObject _actionObj;
+    private void Awake()
     {
-
+        _actionObj.SetActive(false);
     }
+    public override void EnableInput() => _actionObj.SetActive(true);
+
+    public override void DisableInput() => _actionObj.SetActive(false);
 }

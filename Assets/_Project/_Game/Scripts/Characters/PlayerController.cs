@@ -4,20 +4,17 @@ using UnityEngine;
 public class PlayerController : CombatCharacterController
 {
     [SerializeField] GameObject _canvasObj;
-
+    [SerializeField] GameObject _selectCanvas;
     private void Awake()
     {
         _canvasObj.SetActive(false);
-        print(_canvasObj);
+        _selectCanvas.SetActive(false);
     }
-    public override void EnableInput()
-    {
-        print(_canvasObj);
-        _canvasObj.SetActive(true);
-    }
+    public override void EnableInput() => _canvasObj.SetActive(true);
 
-    public override void DisableInput()
-    {
-        _canvasObj.SetActive(false);
-    }
+    public void EnableSelectCanvas() => _selectCanvas.SetActive(true);
+
+    public void DisableSelectCanvas() => _selectCanvas.SetActive(false);
+
+    public override void DisableInput() => _canvasObj.SetActive(false);
 }
