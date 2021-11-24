@@ -9,14 +9,8 @@ public class EnemyAttack : MonoBehaviour
 
     TurnState _turnState;
 
-    int _damage;
-    int _stunDamage;
-    void Awake()
-    {
-        _damage = transform.GetComponentInParent<CombatCharacterController>().Stats.Damage;
-        _stunDamage = transform.GetComponentInParent<CombatCharacterController>().Stats.StunDamage;
-    }
-
+    [SerializeField] int _damage;
+    [SerializeField] int _stunDamage;
 
     public void FindRandomTarget()
     {

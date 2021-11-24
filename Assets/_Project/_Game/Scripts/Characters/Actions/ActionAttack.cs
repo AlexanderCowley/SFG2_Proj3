@@ -7,16 +7,12 @@ public class ActionAttack : ActionBase
 
     IDamagable _damagableTarget;
 
-    int _damage;
-    int _stunDamage;
+    [SerializeField] int _damage;
+    [SerializeField] int _stunDamage;
 
     CombatSelection _selection;
-
-    TurnState _turnState;
     void Awake()
     {
-        _damage = transform.root.GetComponent<CombatCharacterController>().Stats.Damage;
-        _stunDamage = transform.root.GetComponent<CombatCharacterController>().Stats.StunDamage;
         _btn = GetComponent<Button>();
         _selection = GetComponentInParent<CombatSelection>();
     }
