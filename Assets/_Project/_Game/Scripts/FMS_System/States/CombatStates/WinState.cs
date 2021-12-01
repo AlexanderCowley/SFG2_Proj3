@@ -8,7 +8,6 @@ public class WinState : CombatState
     ChangeLevelState _changeLevelState;
     public override void Enter()
     {
-        print("won");
         _stateText.text = "You Won!";
         _changeLevelState = _combatStateMachine._changeLevel;
         _stateText.gameObject.SetActive(true);
@@ -17,7 +16,7 @@ public class WinState : CombatState
 
     IEnumerator delaySceneChange()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
         ChangeToWinScene();
     }
 

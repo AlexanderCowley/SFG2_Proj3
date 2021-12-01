@@ -23,7 +23,6 @@ public abstract class AbstractStateMachine : MonoBehaviour
         {
             _stateList.Add(states[i]);
         }
-        print(states.Length);
     }
 
     public void ChangeState<T>() where T: IState

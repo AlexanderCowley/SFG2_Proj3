@@ -31,8 +31,9 @@ public class TurnState : CombatState
 
     IEnumerator delaySceneChange()
     {
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(2f);
         _combatStateMachine.Input.PressedConfirmed += ChangeState;
+        _stateText.text = "Press Space to Continue";
     }
 
     private void ControllerInit()
@@ -75,7 +76,7 @@ public class TurnState : CombatState
         _stateText.gameObject.SetActive(true);
         _turnCount++;
 
-        _stateText.text = "Turn Number: " + _turnCount.ToString();
+        _stateText.text =  _turnTargetController.gameObject.name + "'s: Turn" ;
     }
 
     void GetTarget() => _turnTargetController = _combatStateMachine._characterTarget;
@@ -93,7 +94,6 @@ public class TurnState : CombatState
         _stateText.gameObject.SetActive(false);
 
         _combatStateMachine.Input.PressedConfirmed -= ChangeState;
-
         _turnTargetController.GetComponent<CombatCharacterController>().DisableInput();
     }
 }

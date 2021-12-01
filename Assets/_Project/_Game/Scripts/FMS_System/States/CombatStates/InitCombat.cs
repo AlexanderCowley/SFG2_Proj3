@@ -19,7 +19,7 @@ public class InitCombat : CombatState
         if (_combatStateMachine == null)
             _combatStateMachine = GetComponent<CombatStateMachine>();
 
-        _stateText.text = "Init Combat State";
+        _stateText.text = "Inititalizing Combat...";
 
         _stateText.gameObject.SetActive(true);
         SpawnCombatants();
@@ -66,7 +66,7 @@ public class InitCombat : CombatState
 
         _combatStateMachine._combatants.Reverse();
 
-        StartCoroutine(stateDelay(.2f));
+        StartCoroutine(stateDelay(2f));
     }
 
     IEnumerator stateDelay(float delay)

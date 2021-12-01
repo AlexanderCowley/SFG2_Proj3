@@ -8,7 +8,7 @@ public class QueueTurnOrder : CombatState
 
     public override void Enter()
     {
-        _stateText.text = "Queue Turn Order State";
+        _stateText.text = "Queuing Turn Order...";
         _stateText.gameObject.SetActive(true);
 
         StartCoroutine(delaySceneChange());
@@ -16,15 +16,15 @@ public class QueueTurnOrder : CombatState
 
     IEnumerator delaySceneChange()
     {
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(2f);
         CheckCharacterStatus();
-        _combatStateMachine.Input.PressedConfirmed += InputAction;
     }
 
     void ShuffleQueue()
     {
         _combatStateMachine._combatants.RemoveAt(0);
         _combatStateMachine._combatants.Add(_combatStateMachine._characterTarget);
+        InputAction();
     }
 
     public void MoveCharacterInQueue(CharacterStunStatus characterStunStatus, int setBackIndex)
@@ -43,7 +43,6 @@ public class QueueTurnOrder : CombatState
     {
         if (_combatStateMachine._combatants.Count < 0)
         {
-            print("no combantants present");
             WonBattle();
         }
 
@@ -70,15 +69,9 @@ public class QueueTurnOrder : CombatState
         for(int i = 0; i < _combatStateMachine._combatants.Count; i++)
         {
             if (_combatStateMachine._combatants[i].GetComponent<PlayerController>() !=  null)
-            {
                 allyCount++;
-            }
             else if(_combatStateMachine._combatants[i].GetComponent<EnemyController>() != null)
-            {
                 enemyCount++;
-                print(enemyCount);
-                print(allyCount);
-            }
         }
 
         if (allyCount <= 0)
@@ -108,7 +101,5 @@ public class QueueTurnOrder : CombatState
     public override void Exit()
     {
         _stateText.gameObject.SetActive(false);
-
-        _combatStateMachine.Input.PressedConfirmed -= InputAction;
     }
 }

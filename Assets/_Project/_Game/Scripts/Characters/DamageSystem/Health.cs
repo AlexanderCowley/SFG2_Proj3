@@ -24,7 +24,6 @@ public class Health : MonoBehaviour, IDamagable
     public void OnHit(int health, int stun)
     {
         _currentHealth -= health;
-        print(_currentHealth);
         _currentStunHealth -= stun;
         _hitEvent?.Invoke();
         _stunEvent?.Invoke();

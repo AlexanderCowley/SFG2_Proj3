@@ -188,7 +188,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 48, y: 108}
-  m_SizeDelta: {x: 250, y: 50}
+  m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &359530244
 MonoBehaviour:
@@ -810,7 +810,7 @@ MonoBehaviour:
   _enemyDestinationOrigin: {fileID: 149326546}
   _characters:
   - {fileID: 6092477445642673076, guid: 1a32c0066366e854193d228182b6e1e5, type: 3}
-  - {fileID: 6316475096287324901, guid: 902c5d16de930404ea2e5abcb91eb50a, type: 3}
+  - {fileID: 821681028701371418, guid: cd701573d5a3b7645925242ece1635ef, type: 3}
 --- !u!114 &1598155009
 MonoBehaviour:
   m_ObjectHideFlags: 0
