@@ -15,7 +15,6 @@ public class EnemyAttack : MonoBehaviour
     public void FindRandomTarget()
     {
         int randomIndex = Random.Range(0, _characters.Count);
-        print(randomIndex);
         _damagableTarget = _characters[randomIndex].GetComponent<IDamagable>();
         Attack();
     }
@@ -37,7 +36,7 @@ public class EnemyAttack : MonoBehaviour
     {
         //Coroutine
         print(_damagableTarget);
-        _damagableTarget?.OnHit(_damage, _stunDamage);
+        _damagableTarget.OnHit(_damage, _stunDamage);
         _characters.Clear();
         _turnState.OnSelect();
     }

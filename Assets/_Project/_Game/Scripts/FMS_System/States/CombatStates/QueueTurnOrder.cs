@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using System.Collections;
 using UnityEngine.UI;
 using UnityEngine;
 
@@ -11,9 +11,14 @@ public class QueueTurnOrder : CombatState
         _stateText.text = "Queue Turn Order State";
         _stateText.gameObject.SetActive(true);
 
-        _combatStateMachine.Input.PressedConfirmed += InputAction;
+        StartCoroutine(delaySceneChange());
+    }
 
+    IEnumerator delaySceneChange()
+    {
+        yield return new WaitForSeconds(.5f);
         CheckCharacterStatus();
+        _combatStateMachine.Input.PressedConfirmed += InputAction;
     }
 
     void ShuffleQueue()
@@ -71,6 +76,8 @@ public class QueueTurnOrder : CombatState
             else if(_combatStateMachine._combatants[i].GetComponent<EnemyController>() != null)
             {
                 enemyCount++;
+                print(enemyCount);
+                print(allyCount);
             }
         }
 
@@ -84,17 +91,18 @@ public class QueueTurnOrder : CombatState
 
     void GameOver()
     {
-        print("gameover");
+        print("game over");
+        _combatStateMachine.ChangeState<LoseState>();
     }
 
     void WonBattle()
     {
-        print("won battle");
+        _combatStateMachine.ChangeState<WinState>();
     }
 
     void InputAction()
     {
-        _stateMachine.ChangeState<TurnState>();
+        _combatStateMachine.ChangeState<TurnState>();
     }
 
     public override void Exit()

@@ -4,16 +4,16 @@ using UnityEngine;
 public class Health : MonoBehaviour, IDamagable
 {
     CombatCharacterController _controller;
-    [SerializeField] int _currentHealth;
+    int _currentHealth;
 
     public delegate void OnDamaged();
     public OnDamaged _hitEvent;
     public OnDamaged _stunEvent;
     public int _CurrentHealth => _currentHealth;
 
-    [SerializeField] int _currentStunHealth;
+    int _currentStunHealth;
     public int _CurrentStunHealth => _currentStunHealth;
-    void Awake() 
+    void Awake()
     {
         _controller = GetComponent<CombatCharacterController>();
         _currentHealth = _controller.Stats.Health;
@@ -24,6 +24,7 @@ public class Health : MonoBehaviour, IDamagable
     public void OnHit(int health, int stun)
     {
         _currentHealth -= health;
+        print(_currentHealth);
         _currentStunHealth -= stun;
         _hitEvent?.Invoke();
         _stunEvent?.Invoke();

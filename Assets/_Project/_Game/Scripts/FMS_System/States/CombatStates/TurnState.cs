@@ -1,6 +1,7 @@
 using UnityEngine.UI;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 public class TurnState : CombatState
 {
@@ -25,6 +26,12 @@ public class TurnState : CombatState
 
         InitStateText();
 
+        StartCoroutine(delaySceneChange());
+    }
+
+    IEnumerator delaySceneChange()
+    {
+        yield return new WaitForSeconds(.5f);
         _combatStateMachine.Input.PressedConfirmed += ChangeState;
     }
 
@@ -78,7 +85,7 @@ public class TurnState : CombatState
     void ChangeState()
     {
         //Coroutine to delay state change until effects finish
-        _stateMachine.ChangeState<QueueTurnOrder>();
+        _combatStateMachine.ChangeState<QueueTurnOrder>();
     }
 
     public override void Exit()

@@ -8,6 +8,9 @@ public class InitCombat : CombatState
 {
     [SerializeField] Text _stateText;
 
+   [SerializeField] Transform _playerDestinationOrigin;
+   [SerializeField] Transform _enemyDestinationOrigin;
+
     [SerializeField] List<CombatCharacterController> _characters = 
         new List<CombatCharacterController>();
 
@@ -31,7 +34,24 @@ public class InitCombat : CombatState
     {
         for (int i = 0; i < _characters.Count; i++)
         {
-            GameObject combantant = Instantiate(_characters[i].gameObject, transform.position, Quaternion.identity);
+            Vector3 offSetVector = Vector3.zero;
+            float positionOffset = ((i + 2) * 1.1f);
+            Vector3 finalVector = Vector3.zero;
+
+            if(_characters[i].GetType() == typeof(PlayerController))
+            {
+                print("player");
+                offSetVector = new Vector3(positionOffset, _playerDestinationOrigin.localPosition.y, 0);
+                finalVector = _playerDestinationOrigin.position + offSetVector;
+            }
+            else if(_characters[i].GetType() == typeof(EnemyController))
+            {
+                print("enemy");
+                offSetVector = new Vector3(positionOffset, _enemyDestinationOrigin.localPosition.y, 0);
+                finalVector = _enemyDestinationOrigin.position + offSetVector;
+            }
+
+            GameObject combantant = Instantiate(_characters[i].gameObject, finalVector, Quaternion.identity);
             combantant.GetComponent<CharacterStunStatus>().QueueReference(GetComponent<QueueTurnOrder>());
             _combatStateMachine._combatants.Add(combantant);
         }

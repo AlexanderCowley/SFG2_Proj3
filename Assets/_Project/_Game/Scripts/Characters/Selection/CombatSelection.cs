@@ -68,6 +68,7 @@ public class CombatSelection : MonoBehaviour
     void Select()
     {
         _actionAttack.GetSelectionTarget(_currentTarget.GetComponent<IDamagable>());
+        _characters.Clear();
         ExitSelection();
     }
 

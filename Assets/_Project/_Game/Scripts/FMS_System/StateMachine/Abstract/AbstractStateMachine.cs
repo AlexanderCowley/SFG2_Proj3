@@ -23,6 +23,7 @@ public abstract class AbstractStateMachine : MonoBehaviour
         {
             _stateList.Add(states[i]);
         }
+        print(states.Length);
     }
 
     public void ChangeState<T>() where T: IState
@@ -53,6 +54,7 @@ public abstract class AbstractStateMachine : MonoBehaviour
 
     void Transition(IState nextState)
     {
+        print(nextState);
         _InTransition = true;
 
         _currentState?.Exit();

@@ -4,6 +4,8 @@ using UnityEngine;
 public class CombatStateMachine : AbstractStateMachine
 {
     [SerializeField] InputController _input;
+
+    public ChangeLevelState _changeLevel;
     public InputController Input => _input;
 
     public GameObject _characterTarget;
