@@ -12,6 +12,13 @@ public class QueueTurnOrder : CombatState
         _stateText.gameObject.SetActive(true);
 
         StartCoroutine(delaySceneChange());
+
+        _combatStateMachine.Input.PressedCanceled += KillPlayers;
+    }
+
+    void KillPlayers()
+    {
+        _combatStateMachine.ChangeState<LoseState>();
     }
 
     IEnumerator delaySceneChange()

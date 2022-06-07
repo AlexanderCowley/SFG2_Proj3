@@ -46,6 +46,7 @@ public class TurnState : CombatState
         _combatSelection = _turnTargetController.GetComponent<CombatSelection>();
         _combatSelection?.InitCombatList(_combatStateMachine._combatants);
         _combatSelection?.InitInput(_combatStateMachine.Input);
+        _combatSelection?.GetStateText(_stateText);
 
         InitActions();
         //Change to Selection State??
@@ -75,8 +76,9 @@ public class TurnState : CombatState
     {
         _stateText.gameObject.SetActive(true);
         _turnCount++;
-
-        _stateText.text =  _turnTargetController.gameObject.name + "'s: Turn" ;
+        string characterName = _turnTargetController.gameObject.name.Substring
+            (0, _turnTargetController.gameObject.name.IndexOf("(Clone)")).Trim();
+        _stateText.text = characterName + "'s: Turn" ;
     }
 
     void GetTarget() => _turnTargetController = _combatStateMachine._characterTarget;

@@ -12,10 +12,12 @@ public class CombatSelection : MonoBehaviour
     [SerializeField] Button _selectionBtn;
     [SerializeField] ActionAttack _actionAttack;
 
+    Text _stateText;
+
     [SerializeField] GameObject _currentTarget;
     int _prevIndex;
 
-    private void Awake()
+    void Awake()
     {
         _controller = GetComponent<PlayerController>();
     }
@@ -32,6 +34,8 @@ public class CombatSelection : MonoBehaviour
     }
 
     public void InitInput(InputController inputController) => _input = inputController;
+
+    public void GetStateText(Text stateText) => _stateText = stateText;
     public void InitSelectionMode()
     {
         _input.PressedLeft += SwitchTargetLeft;
@@ -53,6 +57,10 @@ public class CombatSelection : MonoBehaviour
             index = 0;
         _currentTarget = _characters[index].gameObject;
         _prevIndex = index;
+
+        string characterName = _characters[index].gameObject.name.Substring
+            (0, _characters[index].gameObject.name.IndexOf("(Clone)")).Trim();
+        _stateText.text = $"Select {characterName}?";
     }
 
     void SwitchTargetRight()

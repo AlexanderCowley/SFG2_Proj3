@@ -278,7 +278,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Select Target
+  m_Text: Attack
 --- !u!1 &1869884432482546166
 GameObject:
   m_ObjectHideFlags: 0
@@ -849,8 +849,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4edcf78ad488cfd4389d670b7d33fc8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentHealth: 0
-  _currentStunHealth: 0
 --- !u!114 &3211920434678106046
 MonoBehaviour:
   m_ObjectHideFlags: 0

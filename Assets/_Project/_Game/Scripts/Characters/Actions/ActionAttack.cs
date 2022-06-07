@@ -10,8 +10,6 @@ public class ActionAttack : ActionBase
     [SerializeField] int _damage;
     [SerializeField] int _stunDamage;
 
-    [SerializeField] GameObject _selectedCanvas;
-
     CombatSelection _selection;
     void Awake()
     {
@@ -32,7 +30,6 @@ public class ActionAttack : ActionBase
     void StartSelection()
     {
         _selection.InitSelectionMode();
-        _selectedCanvas.SetActive(true);
     }
 
     public void GetSelectionTarget(IDamagable damagable)

@@ -40,13 +40,11 @@ public class InitCombat : CombatState
 
             if(_characters[i].GetType() == typeof(PlayerController))
             {
-                print("player");
                 offSetVector = new Vector3(positionOffset, _playerDestinationOrigin.localPosition.y, 0);
                 finalVector = _playerDestinationOrigin.position + offSetVector;
             }
             else if(_characters[i].GetType() == typeof(EnemyController))
             {
-                print("enemy");
                 offSetVector = new Vector3(positionOffset, _enemyDestinationOrigin.localPosition.y, 0);
                 finalVector = _enemyDestinationOrigin.position + offSetVector;
             }

@@ -223,7 +223,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: Turn Text
 --- !u!222 &359530245
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -811,6 +811,10 @@ MonoBehaviour:
   _characters:
   - {fileID: 6092477445642673076, guid: 1a32c0066366e854193d228182b6e1e5, type: 3}
   - {fileID: 821681028701371418, guid: cd701573d5a3b7645925242ece1635ef, type: 3}
+  - {fileID: 7987692367052522605, guid: 3372a67bc920cc7408b3318838974ee8, type: 3}
+  - {fileID: 8481807749808339066, guid: 91a8213bb11c3f64ca9f767f7c8aa738, type: 3}
+  - {fileID: 1668498840077679679, guid: 55d9e7bbb0ac66f4eb84a2b63789d01b, type: 3}
+  - {fileID: 5399048681000730545, guid: 450add8f9dacb8d4887b8542cc877376, type: 3}
 --- !u!114 &1598155009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1086,7 +1090,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: ba5e4b0109efbce42a506a144362f5d0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1264,7 +1268,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2056995407}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.5238324, y: -1.9312085, z: -1.863505}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1256676890}
